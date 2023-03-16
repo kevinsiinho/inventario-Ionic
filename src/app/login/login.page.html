@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="container">
+  <ion-label class="sesion">INICIO DE SESIÓN</ion-label>
+  <ion-item>
+    <ion-label><ion-icon name="mail-outline"> </ion-icon> Email</ion-label>
+    <ion-input type="email" placeholder="email@domain.com"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label><ion-icon name="key-outline"> </ion-icon> Password</ion-label>
+    <ion-input type="password" value="password"></ion-input>
+  </ion-item>
+  <ion-button color="warning" [routerLink]="['/tabs/tab1']" expand="block">Ingresar</ion-button>
+</ion-content>

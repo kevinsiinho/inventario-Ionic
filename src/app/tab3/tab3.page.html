@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Mi cuenta
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"><ion-icon name="settings-outline"></ion-icon> Configuración</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Infomación de la cuenta</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-item>
+          <ion-label>Nombre: </ion-label>
+          <ion-input type="text" [disabled]="false">Kevin Andrades</ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Correo: </ion-label>
+          <ion-input type="email" [disabled]="false" placeholder="kevins@gmail.com"></ion-input>
+        </ion-item>
+
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>Actualizar contraseña</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <ion-item>
+            <ion-label>Contraseña actual: </ion-label>
+            <ion-input type="password" [disabled]="false" value="123456789"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Nueva contraseña: </ion-label>
+            <ion-input type="password" [disabled]="false" ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Repetir contraseña: </ion-label>
+            <ion-input type="password" [disabled]="false"></ion-input>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-accordion>
+
+  </ion-accordion-group>
+
+ <!-- <app-explore-container name="Tab 3 page"></app-explore-container>-->
+</ion-content>
