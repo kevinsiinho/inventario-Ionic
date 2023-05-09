@@ -21,11 +21,7 @@
       <div class="ion-padding" slot="content">
         <ion-item>
           <ion-label>Nombre: </ion-label>
-          <ion-input type="text" [disabled]="false">Kevin Andrades</ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label>Correo: </ion-label>
-          <ion-input type="email" [disabled]="false" placeholder="kevins@gmail.com"></ion-input>
+          <ion-input type="text" [disabled]="false">{{this.nombre}}</ion-input>
         </ion-item>
 
       </div>
@@ -51,8 +47,34 @@
         </ion-list>
       </div>
     </ion-accordion>
+    <ion-accordion value="three">
+      <ion-item slot="header" color="light">
+        <ion-label>Ver usuarios</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-list>
+          <ion-item>
+            <ion-input type="number" [disabled]="true" value="1190038"></ion-input>
+            <ion-input type="text" [disabled]="true" value="Kevin Andrades"></ion-input>
+            <ion-button color="danger"><ion-icon name="trash-outline"></ion-icon></ion-button>
+          </ion-item>
+          <ion-item>
+            <ion-input type="number" [disabled]="true" value="1190039"></ion-input>
+            <ion-input type="text" [disabled]="true" value="Arley Andrades"></ion-input>
+            <ion-button color="danger"><ion-icon name="trash-outline"></ion-icon></ion-button>
+          </ion-item>
+        </ion-list>
 
+      </div>
+    </ion-accordion>
+    <ion-accordion value="four">
+      <ion-item slot="header" color="light">
+        <ion-label>Cerrr sesión</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+          <ion-button color="warning" expand="block" (click)="salir()">Salir</ion-button>
+
+      </div>
+    </ion-accordion>
   </ion-accordion-group>
-
- <!-- <app-explore-container name="Tab 3 page"></app-explore-container>-->
 </ion-content>

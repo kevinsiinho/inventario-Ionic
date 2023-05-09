@@ -6,6 +6,8 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -14,8 +16,12 @@
   </ion-header>
   <ion-list>
     <ion-item>
-      <ion-label>Fecha</ion-label>
-      <ion-input type="date"  [disabled]="true"></ion-input>
+      <ion-label>Vendedor: </ion-label>
+      <ion-input type="number"  [disabled]="true"> {{this.idvendedor}}</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fecha: </ion-label>
+      <ion-input type="text"  [disabled]="true">{{this.fecha}}</ion-input>
     </ion-item>
 
     <ion-item>
@@ -23,101 +29,77 @@
       <ion-accordion-group>
         <ion-accordion value="first">
           <ion-item slot="header" color="light">
-            <ion-label>Articulo 1</ion-label>
+            <ion-label>Articulo</ion-label>
           </ion-item>
           <div class="ion-padding" slot="content">
-            <ion-list>
+        <ion-list *ngFor="let item of this.factura.productos">
               <ion-item>
-                <ion-label>Id</ion-label>
-                <ion-input type="number" [disabled]="true">1</ion-input>
+                <ion-label>Nombre:</ion-label>
+                <ion-input type="text" [disabled]="true">{{item.nombre}}</ion-input>
               </ion-item>
               <ion-item>
-                <ion-label>Nombre</ion-label>
-                <ion-input type="text" [disabled]="true">Camisas negras</ion-input>
+                <ion-label>Detalle:</ion-label>
+                <ion-input type="text" [disabled]="true">{{item.detalle}}</ion-input>
               </ion-item>
               <ion-item>
-                <ion-label>Precio</ion-label>
-                <ion-input type="number" [disabled]="true">1</ion-input>
+                <ion-label>Precio:</ion-label>
+                <ion-input type="number" [disabled]="true">{{item.precio}}</ion-input>
               </ion-item>
               <ion-item>
-                <ion-label>Cantidad</ion-label>
-                <ion-input type="number" [disabled]="true">1</ion-input>
+                <ion-label>Cantidad:</ion-label>
+                <ion-input type="number" [disabled]="true">{{item.cantidad}}</ion-input>
               </ion-item>
               <ion-item>
-                <ion-label>total articulo 1:</ion-label>
-                <ion-input type="number" [disabled]="true">11111</ion-input>
+                <ion-label>total articulos:</ion-label>
+                <ion-input type="number" [disabled]="true">{{item.totalProducto}}</ion-input>
               </ion-item>
             </ion-list>
+
+        <ion-list>
+          <ion-item>
+            <ion-select [(ngModel)]="idCategoria" aria-label="Categoria" (ionChange)="seleccionado(true,idCategoria)" interface="action-sheet" placeholder="Categorias">
+              <ion-select-option *ngFor="let item of this.todo" value="{{item.id}}">{{item.nombre}}</ion-select-option>
+            </ion-select>
+           </ion-item>
+
+          <ion-item *ngIf="this.op1===true">
+            <ion-select [(ngModel)]="this.producto2.id" aria-label="Productos" interface="action-sheet" placeholder="Productos">
+              <ion-select-option *ngFor="let item of this.productos" value="{{item.id}}">{{item.nombre}},{{item.detalle}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Cantidad:</ion-label>
+            <ion-input type="number" placeholder="Cantidad" [(ngModel)]="producto2.cantidad" required></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button color="medium" expand="block" (click)="add()" >Agregar</ion-button>
+
           </div>
         </ion-accordion>
       </ion-accordion-group>
     </ion-item>
     <ion-item>
-      <ion-label>SUBTOTAL</ion-label>
-      <ion-input type="number" value="$0000"></ion-input>
+      <ion-label>SUBTOTAL: </ion-label>
+      <ion-input type="number"><span> $</span>{{this.factura.subtotal}}</ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>IVA 19%</ion-label>
-      <ion-input type="number" value="$0000"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Descuento</ion-label>
-      <ion-input type="number" placeholder="$0000"></ion-input>
+      <ion-label>IVA 19%:</ion-label>
+      <ion-input type="number" ><span>$</span>{{this.factura.iva}}</ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>TOTAL</ion-label>
-      <ion-input type="number" placeholder="$00000"></ion-input>
+      <ion-label>Descuento:</ion-label>
+      <ion-input type="number"><span>$</span>{{this.factura.descuento}}</ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>TOTAL:</ion-label>
+      <ion-input type="number"><span>$</span>{{this.factura.total}}</ion-input>
     </ion-item>
   </ion-list>
+
   <!-- <app-explore-container name="Registro de facturas"></app-explore-container>-->
 </ion-content>
-
+<ion-button color="warning" expand="block" (click)="onSave()">Crear</ion-button>
 <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-  <ion-fab-button>
-    <ion-button  expand="block" (click)="setOpen(true)"><ion-icon  name="add"></ion-icon></ion-button>
-  </ion-fab-button>
-</ion-fab>
 
-
-<ion-content class="ion-padding">
-
-  <ion-modal [isOpen]="isModalOpen">
-    <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Agregando articulo</ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)">Close</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-list>
-          <ion-item>
-            <ion-label>Id:</ion-label>
-            <ion-input type="number" [disabled]="false">1</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Nombre:</ion-label>
-            <ion-input type="text" [disabled]="false">Camisas negras</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Precio:</ion-label>
-            <ion-input type="number" [disabled]="false">1</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>Cantidad:</ion-label>
-            <ion-input type="number" [disabled]="false">1</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label>total articulo 1:</ion-label>
-            <ion-input type="number" [disabled]="false">11111</ion-input>
-          </ion-item>
-        </ion-list>
-        <ion-button color="warning" expand="block">Agregar</ion-button>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-</ion-content>

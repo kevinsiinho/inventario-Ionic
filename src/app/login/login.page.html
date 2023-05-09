@@ -7,12 +7,28 @@
 <ion-content class="container">
   <ion-label class="sesion">INICIO DE SESIÓN</ion-label>
   <ion-item>
-    <ion-label><ion-icon name="mail-outline"> </ion-icon> Email</ion-label>
-    <ion-input type="email" placeholder="email@domain.com"></ion-input>
+    <ion-label><ion-icon name="mail-outline"> </ion-icon> Email:</ion-label>
+    <ion-input type="email" placeholder="email@domain.com" required="Ingresa el email" [(ngModel)]="login.email" ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label><ion-icon name="key-outline"> </ion-icon> Password</ion-label>
-    <ion-input type="password" value="password"></ion-input>
+    <ion-input type="password" placeholder="password" required="Ingresa la contraseña" [(ngModel)]="login.password"></ion-input>
   </ion-item>
-  <ion-button color="warning" [routerLink]="['/tabs/tab1']" expand="block">Ingresar</ion-button>
+  <ion-button color="warning" (click)="Verificar()"  expand="block">Ingresar</ion-button>
+
 </ion-content>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button>
+    <ion-icon color="warning" name="chevron-up-circle"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button>
+      <ion-icon [routerLink]="['/registro']" name="create-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button>
+      <ion-icon name="key-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+

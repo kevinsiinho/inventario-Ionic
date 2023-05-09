@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label  class="inventario">INVENTARIO</ion-label>
+  <ion-item>
+    <ion-label>Identificación:</ion-label>
+    <ion-input type="number" [(ngModel)]="user.cod"  placeholder="123456789"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Name:</ion-label>
+    <ion-input type="text" [(ngModel)]="user.username" placeholder="Pepito Perez"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Email:</ion-label>
+    <ion-input type="email" [(ngModel)]="user.email" placeholder="email@domain.com"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Password:</ion-label>
+    <ion-input type="password" [(ngModel)]="user.password" placeholder="Ingresa la contraseña"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-select aria-label="roles" [(ngModel)]="user.rol" interface="action-sheet" placeholder="Seleciona un rol">
+          <ion-select-option value="1">Administrador</ion-select-option>
+          <ion-select-option value="2">Vendedor</ion-select-option>
+          <ion-select-option value="3">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  <ion-button color="warning" (click)="OnSave()" expand="block">Registrar</ion-button>
+
+</ion-content>

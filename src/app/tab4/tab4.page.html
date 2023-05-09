@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Categoria y Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+ <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input type="text" placeholder="Nombre Categoria" [(ngModel)]="this.categoria.nombre"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="addCategoria()">Agregar Categoria</ion-button>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-select [(ngModel)]="this.producto.categoriaId" aria-label="Categoria" interface="action-sheet" placeholder="Seleciona categorias">
+       <ion-select-option *ngFor="let item of this.todo" value="{{item.id}}">{{item.nombre}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input type="text" placeholder="Ingresa el nombre" [(ngModel)]="this.producto.nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Detalle</ion-label>
+      <ion-input type="text" placeholder="Detalle" [(ngModel)]="this.producto.detalle"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Precio</ion-label>
+      <ion-input type="number" placeholder="Ingresa el precio" [(ngModel)]="this.producto.precio"></ion-input>
+    </ion-item>
+      <ion-button color="warning" expand="block" (click)="addArticulo()">Agregar producto</ion-button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Factura</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Editar factura</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item>
+      <ion-label>Fecha: </ion-label>
+      <ion-input type="string"  [disabled]="true">{{this.fecha}}</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Vendedor: </ion-label>
+      <ion-input type="number"  [disabled]="true"> {{this.factura.id}}</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>productos</ion-label>
+      <ion-accordion-group>
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>producto</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+        <ion-list *ngFor="let item of this.factura.productos; let i=index">
+              <ion-item>
+                <ion-label>#</ion-label>
+                <ion-input type="number" [disabled]="false">{{i+1}}</ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Nombre:</ion-label>
+                <ion-input type="text" [(ngModel)]="item.nombre" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Detalle:</ion-label>
+                <ion-input type="text" [(ngModel)]="item.detalle" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Precio:</ion-label>
+                <ion-input type="number" [(ngModel)]="item.precio" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Cantidad:</ion-label>
+                <ion-input type="number" [(ngModel)]="item.cantidad" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>total producto:</ion-label>
+                <ion-input type="number" [disabled]="true"><span>$</span>{{item.totalProducto}}</ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-button color="success" (click)="editar(item,i)">Guardar</ion-button> <ion-button color="danger" (click)="deleteproducto(i)" >Eliminar</ion-button>
+              </ion-item>
+            </ion-list>
+
+        <ion-list>
+          <ion-item>
+            <ion-select [(ngModel)]="idCategoria" aria-label="Categoria" (ionChange)="seleccionado(true,idCategoria)" interface="action-sheet" placeholder="Categorias">
+              <ion-select-option *ngFor="let item of this.todo" value="{{item.id}}">{{item.nombre}}</ion-select-option>
+            </ion-select>
+           </ion-item>
+
+          <ion-item *ngIf="this.op1===true">
+            <ion-select  aria-label="Productos" interface="action-sheet" placeholder="Productos">
+              <ion-select-option *ngFor="let item of this.productos" >{{item.nombre}},{{item.detalle}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Cantidad:</ion-label>
+            <ion-input type="number" placeholder="Cantidad" [(ngModel)]="producto2.cantidad" required></ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button color="medium" expand="block" (click)="add()" >Agregar</ion-button>
+
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-item>
+    <ion-item>
+      <ion-label>SUBTOTAL </ion-label>
+      <ion-input type="number" [(ngModel)]="factura.subtotal"><span> $</span></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>IVA 19%</ion-label>
+      <ion-input type="number" [(ngModel)]="factura.iva"><span>$</span></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descuento</ion-label>
+      <ion-input type="number" [(ngModel)]="factura.descuento"><span>$</span></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>TOTAL</ion-label>
+      <ion-input type="number" [(ngModel)]="factura.total"><span>$</span></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <!-- <app-explore-container name="Registro de facturas"></app-explore-container>-->
+</ion-content>
+<ion-button color="warning" expand="block" (click)="Update()">Actualizar</ion-button>
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+

@@ -13,40 +13,55 @@
     </ion-toolbar>
   </ion-header>
 
-     <ion-list>
+     <ion-list *ngFor="let item of this.facturas; let i=index">
+      <ion-item>
+        <ion-label>Factura #</ion-label>
+        <ion-input type="number"  [disabled]="true">{{i+1}}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>IdFactura:</ion-label>
+        <ion-input type="text"  [disabled]="true">{{item.id}}</ion-input>
+      </ion-item>
       <ion-item>
         <ion-label>Fecha</ion-label>
-        <ion-input type="date"  [disabled]="true"></ion-input>
+        <ion-input type="text"  [disabled]="true">{{item.fecha}}</ion-input>
       </ion-item>
-
       <ion-item>
-        <ion-label>Articulos</ion-label>
+        <ion-label>Vendedor: </ion-label>
+        <ion-input type="number"  [disabled]="true">{{item.idVendedor}} </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>productos</ion-label>
         <ion-accordion-group>
           <ion-accordion value="first">
             <ion-item slot="header" color="light">
-              <ion-label>Articulo 1</ion-label>
+              <ion-label>Expandir</ion-label>
             </ion-item>
             <div class="ion-padding" slot="content">
-              <ion-list>
+              <ion-list *ngFor="let item2 of item.productos; let x=index">
                 <ion-item>
-                  <ion-label>Id</ion-label>
-                  <ion-input type="number" [disabled]="true">1</ion-input>
+                  <ion-label>#</ion-label>
+                  <ion-input type="text" [disabled]="true">{{x+1}}</ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>Nombre</ion-label>
-                  <ion-input type="text" [disabled]="true">Camisas negras</ion-input>
+                  <ion-input type="text" [disabled]="true">{{item2.nombre}}</ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Detalle</ion-label>
+                  <ion-input type="text" [disabled]="true">{{item2.detalle}}</ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>Precio</ion-label>
-                  <ion-input type="number" [disabled]="true">1</ion-input>
+                  <ion-input type="number" [disabled]="true"><span>$</span>{{item2.precio}}</ion-input>
                 </ion-item>
                 <ion-item>
                   <ion-label>Cantidad</ion-label>
-                  <ion-input type="number" [disabled]="true">1</ion-input>
+                  <ion-input type="number" [disabled]="true"><span>$</span>{{item2.cantidad}}</ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-label>total articulo 1:</ion-label>
-                  <ion-input type="number" [disabled]="true">11111</ion-input>
+                  <ion-label>total producto:</ion-label>
+                  <ion-input type="number" [disabled]="true"><span>$</span>{{item2.totalProducto}}</ion-input>
                 </ion-item>
               </ion-list>
             </div>
@@ -55,21 +70,24 @@
       </ion-item>
       <ion-item>
         <ion-label>SUBTOTAL</ion-label>
-        <ion-input type="number" value="$0000"></ion-input>
+        <ion-input type="number" [disabled]="true"><span>$</span>{{item.subtotal}}</ion-input>
       </ion-item>
       <ion-item>
         <ion-label>IVA 19%</ion-label>
-        <ion-input type="number" value="$0000"></ion-input>
+        <ion-input type="number" [disabled]="true"><span>$</span> {{item.iva}}</ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Descuento</ion-label>
-        <ion-input type="number" placeholder="$0000"></ion-input>
+        <ion-input type="number" [disabled]="true"><span>$</span>{{item.descuento}}</ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>TOTAL</ion-label>
-        <ion-input type="number" placeholder="$00000"></ion-input>
+        <ion-input type="number" [disabled]="true"><span>$</span>{{item.total}}</ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-button color="success" [routerLink]="['../editar',item.id]" >Editar</ion-button> <ion-button color="danger" (click)="presentAlert(item.id!)">Eliminar</ion-button>
       </ion-item>
     </ion-list>
   </ion-content>
